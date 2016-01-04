@@ -1,0 +1,127 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<parent>
+		<groupId>com.wangyin.pdc</groupId>
+		<artifactId>pdc-account</artifactId>
+		<version>0.0.1</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>pdc-account-test</artifactId>
+	<packaging>jar</packaging>
+	<name>pdc-account-test</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.wangyin.pdc</groupId>
+			<artifactId>pdc-man-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.wangyin.pdc</groupId>
+			<artifactId>pdc-account-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.wangyin.pdc</groupId>
+			<artifactId>pdc-account-dao</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.wangyin.pdc</groupId>
+			<artifactId>pdc-account-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.wangyin.pdc</groupId>
+			<artifactId>pdc-account-service</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>${basedir}/target/test-classes/testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<configuration>
+					<instrumentation>
+						<includes>
+							<include>com/wangyin/pdc/account/common/utils/*.class</include>
+
+							<include>com/wangyin/pdc/account/core/adapter/*.class</include>
+							<include>com/wangyin/pdc/account/core/msgtransfer/impl/*.class</include>
+							<include>com/wangyin/pdc/account/core/msgtransfer/builder/*.class</include>
+							<include>com/wangyin/pdc/account/core/repository/impl/*.class</include>
+							<include>com/wangyin/pdc/account/core/service/impl/*.class</include>
+							<include>com/wangyin/pdc/account/core/util/*.class</include>
+
+							<include>com/wangyin/pdc/account/dal/dao/impl/*.class</include>
+
+							<include>com/wangyin/pdc/account/rule/service/impl/*.class</include>
+							<include>com/wangyin/pdc/account/rule/repository/impl/*.class</include>
+							<include>com/wangyin/pdc/account/rule/adapter/*.class</include>
+
+							<include>com/wangyin/pdc/query/service/validator/*.class</include>
+							<include>com/wangyin/pdc/query/service/impl/*.class</include>
+							<include>com/wangyin/pdc/query/service/msp/*.class</include>
+						</includes>
+					</instrumentation>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<aggregate>true</aggregate>
+					<formats>
+						<format>xml</format>
+					</formats>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.18.1</version>
+				<configuration>
+					<aggregate>true</aggregate>
+					<showSuccess>true</showSuccess>
+					<reportSets>
+						<reportSet>
+							<reports>
+								<report>report-only</report>
+							</reports>
+						</reportSet>
+					</reportSets>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+
+</project>
